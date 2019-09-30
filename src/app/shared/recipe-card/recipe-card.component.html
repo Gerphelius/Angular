@@ -1,0 +1,11 @@
+<div class='recipe-item'>
+  <div class='recipe-image'><img [src]="recipe.photoUrl" alt="recipe image"></div>
+  <h3 class='recipe-heading'>{{recipe.title}}</h3>
+  <p class='recipe-description'>{{recipe.description}}</p>
+  <div class='likes'><fa-icon class='heart icon' [icon]="faHeart"></fa-icon> {{recipe.likes}}</div>
+  <div class='btns-menu'>
+    <div class='left-menu'><fa-icon class="thumbs-up icon" [icon]="faThumbsUp"></fa-icon> <fa-icon class="thumbs-down icon" [icon]="faThumbsDown"></fa-icon></div>
+    <div class='right-menu'><fa-icon class="eye icon" [icon]="faEye"></fa-icon> <fa-icon class="pencil icon" [icon]="faPencilAlt"></fa-icon> <fa-icon class="trash icon" [icon]="faTrashAlt"></fa-icon></div>
+  </div>
+</div>
+

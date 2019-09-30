@@ -1,0 +1,15 @@
+<form id="purchases-form">
+  <label for='title'>Title</label>
+  <input type="text" id="title" maxlength='40'>
+  
+  <label for="description">Description</label>
+  <textarea id="description" cols="30" rows="10" maxlength='310'></textarea>
+
+  <label for="photoUrl">Photo URL</label>
+  <input type="url" id="photoUrl">
+
+  <label for="instructions">Instructions</label>
+  <textarea id="instructions" cols="30" rows="10"></textarea>
+
+  <button type="submit" (click)='addNewRecipe($event)'>Add</button>
+</form>

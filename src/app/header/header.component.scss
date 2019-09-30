@@ -1,0 +1,40 @@
+header {
+  display: grid;
+  grid-auto-flow: column;
+  background-color: rgb(175, 175, 175);
+  padding: 0 2vw;
+  color: #4a4a4a;
+  position: fixed;
+  width: 96%;
+  height: 5vw;
+  align-items: center;
+}
+
+nav {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: end;
+}
+
+#radio-menu {
+  list-style: none;
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: 1vw;
+
+  input[type="radio"] {
+    opacity: 0;
+    width: 0;
+  }
+
+  label {
+    color: #4a4a4a;
+    font-weight: bold;
+    cursor: pointer;
+    height: 3vw;
+  }
+  
+  input:checked + label {
+    border-bottom: 0.15vw solid rgb(213, 20, 85);
+  }
+}
