@@ -1,0 +1,36 @@
+#purchases-form {
+  padding-top: 8vw;
+  display: grid;
+  grid-auto-flow: row;
+  margin: 0 auto;
+  width: 60%;
+
+  input, textarea {
+    margin-bottom: 2vw;
+    font-size: 1.5rem;
+  }
+
+  label {
+    font-weight: bold;
+  }
+
+  .alertMsg {
+    color: rgb(151, 29, 29);
+    margin-top: -2vw;
+  }
+
+  button {
+    width: 7vw;
+    height: 2.5vw;
+    background-color: rgb(23, 122, 94);
+    border: none;
+    border-radius: 0.3vw;
+    color: white;
+    font-size: 1.2rem;
+    margin-left: auto;
+  }
+
+  button:hover {
+    background-color: rgb(53, 163, 132);
+  }
+}

@@ -1,0 +1,13 @@
+<header>
+  <h1>Recipes</h1>
+  <nav id="radio-menu">
+    <input type="radio" id="all-recipes" name="nav" checked (change)='changeTo($event)'>
+    <label for="all-recipes"><p>All recipes</p></label>
+
+    <input type="radio" id="favorites" name="nav" (change)='changeTo($event)'>
+    <label for="favorites"><p>Favorites</p></label>
+
+    <input type="radio" id="purchases" name="nav" (change)='changeTo($event)'>
+    <label for="purchases"><p>Purchases</p></label>
+  </nav>
+</header>

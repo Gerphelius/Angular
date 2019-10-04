@@ -1,0 +1,7 @@
+<div id="purchases-form">
+  <label for="ingredient-input">Ingredient</label>
+  <input #ingredient id='ingredient-input' type="text">
+  <button (click)='addIngredient(ingredient.value)'><fa-icon class="shopping-cart icon" [icon]="faShoppingCart"></fa-icon> Add to purchases</button>
+</div>
+
+<app-purchases-list></app-purchases-list>

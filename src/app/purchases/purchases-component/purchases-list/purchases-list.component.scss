@@ -1,0 +1,17 @@
+ul {
+  list-style: none;
+
+  li {
+    display: grid;
+    grid-template-columns: auto 1vw;
+    width: 50vw;
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 1vw;
+  } 
+
+  fa-icon {
+    color: rgb(206, 23, 89);
+    margin-right: auto;
+  }
+}
