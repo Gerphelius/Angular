@@ -1,4 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
+import { RecipesService } from 'src/app/core/recipes/recipes.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-recipes-list',
@@ -6,5 +8,12 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./recipes-list.component.scss']
 })
 export class RecipesListComponent {
-  @Input() recipes;
+  constructor(private readonly recipesService: RecipesService, private route: ActivatedRoute) {
+    if (route.snapshot.data.isAllRecipes) {
+      this.recipes = this.route.snapshot.data.allRecipesArr;
+    } else {
+      this.recipes = this.recipesService.getFavRecipes();
+    }
+  }
+  recipes: Array<any>;
 }

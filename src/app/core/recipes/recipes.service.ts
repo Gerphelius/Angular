@@ -5,8 +5,6 @@ import { allRecipes } from '../allRecipes';
   providedIn: 'root'
 })
 export class RecipesService {
-  constructor() {}
-
   allRecipes: Array<any> = allRecipes;
   favorites: Array<string> = [
     'Chicken Parmesan', 
@@ -14,10 +12,10 @@ export class RecipesService {
     'Sicilian Roasted Chicken',
     'Slow Cooker Chicken Taco Soup'
   ];
-  isExist: boolean = false;
+  isRecipeExist: boolean = false;
 
-  getRecipes() {
-    const recipes: Array<object> = [];
+  getFavRecipes() {
+    const recipes: Array<any> = [];
 
     this.allRecipes.forEach((recipe) => {
       if (this.favorites.includes(recipe.title)) {
@@ -27,11 +25,19 @@ export class RecipesService {
     return recipes;
   }
 
+  getRecipesArr() {
+    return this.allRecipes;
+  }
+
+  getRecipeWithTitle(title: string) {
+    return this.allRecipes.find((recipe: any) => recipe.title === title);
+  }
+
   addNewRecipe(title: string, descr: string, url: string, instr: string) {
-    if (allRecipes.findIndex((recipe: any) => recipe.title === title) > -1) {
-      this.isExist = true;
+    if (this.allRecipes.findIndex((recipe: any) => recipe.title === title) > -1) {
+      this.isRecipeExist = true;
     } else {
-      allRecipes.push({
+      this.allRecipes.push({
         title: title,
         description: descr,
         photoUrl: url,
@@ -40,15 +46,34 @@ export class RecipesService {
         categoryId: 'string',
         likes: 0
       });
-      this.isExist = false;
+      this.isRecipeExist = false;
     }
   }
 
+  editRecipe(curRecipeObj: any, title: string, descr: string, url: string, instr: string) {
+    curRecipeObj.title = title;
+    curRecipeObj.description = descr;
+    curRecipeObj.photoUrl = url;
+    curRecipeObj.instructions = instr;
+  }
+
   removeRecipe(title: string): void {
-    allRecipes.forEach((recipe: any, index: number) => {
+    debugger
+    this.allRecipes.forEach((recipe: any, index: number) => {
       if (recipe.title === title) {
-        allRecipes.splice(index, 1);
+        this.allRecipes.splice(index, 1);
+        return;
       }
     })
   }
 }
+
+// interface Recipe {
+//   title: string,
+//   description: string,
+//   photoUrl: string,
+//   ingredients: string[],
+//   instructions: string,
+//   categoryId: string,
+//   likes: number
+// }

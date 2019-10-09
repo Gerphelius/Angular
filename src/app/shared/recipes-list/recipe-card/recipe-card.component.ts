@@ -15,6 +15,8 @@ import {
   styleUrls: ['./recipe-card.component.scss']
 })
 export class RecipeCardComponent {
+  constructor(private readonly recipesService: RecipesService) {}
+  
   faThumbsUp = faThumbsUp;
   faThumbsDown = faThumbsDown;
   faHeart = faHeart;
@@ -23,8 +25,6 @@ export class RecipeCardComponent {
   faTrashAlt = faTrashAlt;
   
   @Input() recipe: any;
-
+  allRecipes = this.recipesService.allRecipes;
   removeRecipe = this.recipesService.removeRecipe;
-
-  constructor(private readonly recipesService: RecipesService) {}
 }

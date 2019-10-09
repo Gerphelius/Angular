@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { IngredientsService } from 'src/app/core/ingredients/ingredients.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-purchases',
@@ -9,9 +10,9 @@ import { IngredientsService } from 'src/app/core/ingredients/ingredients.service
 })
 export class PurchasesComponent {
   faShoppingCart = faShoppingCart;
+ 
+  addIngredient = this.ingredientsService.addToPurchases; 
+  purchases: Array<string> = this.route.snapshot.data.ingredientsArr;
 
-  addIngredient = this.ingredientsService.addToPurchases;
-  purchases: Array<string> = this.ingredientsService.purchases;
-
-  constructor(private readonly ingredientsService: IngredientsService) { }
+  constructor(private readonly ingredientsService: IngredientsService, private route: ActivatedRoute) {}
 }

@@ -1,7 +1,3 @@
-<app-header (currentSelection)="changeStateOf($event)"></app-header>
+<app-header></app-header>
 
-<app-all-recipes *ngIf='currentSelection === "all-recipes" || currentSelection === "default"'></app-all-recipes>
-
-<app-favorites *ngIf='currentSelection === "favorites"'></app-favorites>
-
-<app-purchases *ngIf='currentSelection === "purchases"'></app-purchases>
+<router-outlet></router-outlet>

@@ -7,10 +7,4 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular-task-one';
-
-  public currentSelection: string = 'default';
-
-  public changeStateOf(currentSelection: string) {
-    this.currentSelection = currentSelection;
-  }
 }

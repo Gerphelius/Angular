@@ -6,10 +6,4 @@ import { RecipesService } from 'src/app/core/recipes/recipes.service';
   templateUrl: './all-recipes.component.html',
   styleUrls: ['./all-recipes.component.scss']
 })
-export class AllRecipesComponent {
-  recipes: Array<object>;
-
-  constructor(private readonly recipesService: RecipesService) { 
-    this.recipes = recipesService.allRecipes;
-  }
-}
+export class AllRecipesComponent {}

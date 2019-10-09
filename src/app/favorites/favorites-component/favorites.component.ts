@@ -6,12 +6,4 @@ import { RecipesService } from 'src/app/core/recipes/recipes.service';
   templateUrl: './favorites.component.html',
   styleUrls: ['./favorites.component.scss']
 })
-export class FavoritesComponent {
-  favoriteRecipes: Array<string>;
-
-  constructor(private readonly recipesService: RecipesService) {
-    this.favoriteRecipes = recipesService.favorites; 
-  }
-
-  recipes: Array<object> = this.recipesService.getRecipes();
-}
+export class FavoritesComponent {}

@@ -10,31 +10,25 @@ header {
   align-items: center;
 }
 
-nav {
+.logo:hover {
+  cursor: pointer;
+}
+
+.main-nav {
   display: grid;
   grid-auto-flow: column;
   justify-content: end;
-}
-
-#radio-menu {
-  list-style: none;
-  display: grid;
-  grid-auto-flow: column;
   grid-gap: 1vw;
 
-  input[type="radio"] {
-    opacity: 0;
-    width: 0;
-  }
-
-  label {
+  .nav-item {
+    text-decoration: none;
     color: #4a4a4a;
     font-weight: bold;
-    cursor: pointer;
-    height: 3vw;
+    height: 2.2vw;
+    margin-top: 1vw;
   }
-  
-  input:checked + label {
+
+  .active {
     border-bottom: 0.15vw solid rgb(213, 20, 85);
   }
 }

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { PurchasesComponent } from './purchases-component/purchases.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PurchasesListComponent } from './purchases-component/purchases-list/purchases-list.component';
+import { PurchasesRoutingModule } from './purchases-routing.module';
 
 @NgModule({
   declarations: [
@@ -11,7 +12,8 @@ import { PurchasesListComponent } from './purchases-component/purchases-list/pur
   ],
   imports: [
     CommonModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    PurchasesRoutingModule
   ],
   exports: [
     PurchasesComponent

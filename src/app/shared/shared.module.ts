@@ -1,25 +1,34 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import { RecipesListComponent } from './recipes-list/recipes-list.component';
 import { RecipeCardComponent } from './recipes-list/recipe-card/recipe-card.component';
+import { RecipeInputFormComponent } from './recipe-input-form/recipe-input-form.component';
+
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 import { ShadowDirective } from './recipes-list/recipe-card/directives/shadow.directive';
 import { StrLengthControlPipe } from './recipes-list/recipe-card/pipes/str-length-control.pipe';
+import { RouterModule } from '@angular/router';
+import { RecipeDetailsComponent } from './recipe-details/recipe-details.component';
 
 @NgModule({
   declarations: [
     RecipesListComponent, 
     RecipeCardComponent, 
     ShadowDirective, 
-    StrLengthControlPipe
+    StrLengthControlPipe, 
+    RecipeInputFormComponent, RecipeDetailsComponent
   ],
   imports: [
     CommonModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    RouterModule
   ],
   exports: [
     RecipesListComponent,
-    RecipeCardComponent 
+    RecipeCardComponent,
+    RecipeInputFormComponent 
   ],
 })
 export class SharedModule { }
