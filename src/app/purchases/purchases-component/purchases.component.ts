@@ -9,10 +9,10 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./purchases.component.scss']
 })
 export class PurchasesComponent {
+  constructor(private readonly ingredientsService: IngredientsService, private route: ActivatedRoute) {}
+  
   faShoppingCart = faShoppingCart;
- 
+  
   addIngredient = this.ingredientsService.addToPurchases; 
   purchases: Array<string> = this.route.snapshot.data.ingredientsArr;
-
-  constructor(private readonly ingredientsService: IngredientsService, private route: ActivatedRoute) {}
 }

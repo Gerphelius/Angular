@@ -1,28 +1,96 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { RecipesService } from 'src/app/core/recipes/recipes.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { 
+  FormControl,
+  Validators,
+  FormBuilder,
+  FormArray
+} from '@angular/forms';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { Recipe } from '../interfaces/recipe-interface';
 
 @Component({
   selector: 'app-recipe-input-form',
   templateUrl: './recipe-input-form.component.html',
   styleUrls: ['./recipe-input-form.component.scss']
 })
-
 export class RecipeInputFormComponent implements OnInit {
-  constructor(private readonly recipesService: RecipesService, private readonly route: ActivatedRoute) { }
+  constructor(
+    private readonly recipesService: RecipesService,
+    private readonly route: ActivatedRoute, 
+    private readonly router: Router,
+    private formBuilder: FormBuilder
+  ) { }
   
-  btnName: string;
-  allRecipes: Array<any>;
-  addNewRecipe: any;
-  editRecipe: any;
-  isRecipeExist: boolean;
-  curRecipeObj: any = this.route.snapshot.data.title;
+  faPlus = faPlus;
 
+  recipe: Recipe = this.route.snapshot.data.title;
+  btnName: string = this.route.snapshot.data.btnName;
+  recipeInputForm: any;
+  isRecipeExist: boolean = false;
+  url = new RegExp('^(https?:\\/\\/)?' +
+  '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' +
+    '((\\d{1,3}\\.){3}\\d{1,3}))' +
+    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' +
+    '(\\?[;&a-z\\d%_.~+=-]*)?' +
+    '(\\#[-a-z\\d_]*)?$', 'i');
+ 
   ngOnInit() {
-    this.btnName = this.route.snapshot.data.btnName;
-    this.allRecipes = this.recipesService.allRecipes;
-    this.addNewRecipe = this.recipesService.addNewRecipe;
-    this.editRecipe = this.recipesService.editRecipe;
-    this.isRecipeExist = this.recipesService.isRecipeExist;
+    this.recipeInputForm = this.formBuilder.group({
+      title: new FormControl(this.recipe ? this.recipe.title : '', [
+        Validators.required,
+        Validators.minLength(2),
+        Validators.maxLength(50),
+      ]),
+      description: new FormControl(this.recipe ? this.recipe.description : '', Validators.required),
+      photoUrl: new FormControl(this.recipe ? this.recipe.photoUrl : '', [
+        Validators.required, 
+        Validators.pattern(this.url)
+      ]),
+      ingredients: this.formBuilder.array(this.recipe ? this.recipe.ingredients : []),
+      instructions: new FormControl(this.recipe ? this.recipe.instructions : '', Validators.required),
+    });
+  }
+ 
+  submit(inputsObj: Recipe) {
+  	if (this.btnName === 'Add recipe') {
+      if (this.recipesService.getRecipeWithTitle(inputsObj.title)) {
+        this.isRecipeExist = true;
+      } else {
+        this.recipesService.addNewRecipe(inputsObj);
+      }
+    } else if (this.btnName === 'Edit recipe') {
+      this.recipesService.editRecipe(this.recipe, inputsObj)
+    }
+    this.router.navigate(['..'])
+  }
+
+  get title() {
+    return this.recipeInputForm.get('title');
+  }
+
+  get description() {
+    return this.recipeInputForm.get('description');
+  }
+
+  get photoUrl() {
+    return this.recipeInputForm.get('photoUrl');
+  }
+
+  get instructions() {
+    return this.recipeInputForm.get('instructions');
+  }
+  
+  get ingredients() {
+    return this.recipeInputForm.get('ingredients') as FormArray;
+  }
+
+  addIngredients() {
+    this.ingredients.push(this.formBuilder.control(''));
+  }
+
+  deleteIngredient(control: any, index: number) {
+    control.removeAt(index)
   }
 }

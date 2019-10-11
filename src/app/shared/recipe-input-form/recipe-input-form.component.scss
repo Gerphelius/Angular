@@ -1,22 +1,19 @@
-#purchases-form {
+.recipe-input-form {
   padding-top: 8vw;
   display: grid;
   grid-auto-flow: row;
   margin: 0 auto;
   width: 60%;
+  grid-gap: 1vw;
+  font-size: 2rem;
 
-  input, textarea {
-    margin-bottom: 2vw;
-    font-size: 1.5rem;
-  }
+  .inputs {
+    display: grid;
+    grid-auto-flow: row;
 
-  label {
-    font-weight: bold;
-  }
-
-  .alertMsg {
-    color: rgb(151, 29, 29);
-    margin-top: -2vw;
+    input, textarea {
+      font-size: 2rem;
+    }
   }
 
   button {
@@ -32,5 +29,14 @@
 
   button:hover {
     background-color: rgb(53, 163, 132);
+  }
+  
+  .recipe-input-form__error-msg {
+    color: rgb(165, 14, 14);
+  }
+
+  #add-ingredients-btn {
+    width: 2vw;
+    height: 2vw;
   }
 }

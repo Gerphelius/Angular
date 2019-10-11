@@ -1,21 +1,21 @@
 import { Injectable } from '@angular/core';
 import { allRecipes } from '../allRecipes';
+import { Recipe } from 'src/app/shared/interfaces/recipe-interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RecipesService {
-  allRecipes: Array<any> = allRecipes;
+  allRecipes: Array<Recipe> = allRecipes;
   favorites: Array<string> = [
     'Chicken Parmesan', 
     'Texas Boiled Beer Shrimp', 
     'Sicilian Roasted Chicken',
     'Slow Cooker Chicken Taco Soup'
   ];
-  isRecipeExist: boolean = false;
 
   getFavRecipes() {
-    const recipes: Array<any> = [];
+    const recipes: Array<Recipe> = [];
 
     this.allRecipes.forEach((recipe) => {
       if (this.favorites.includes(recipe.title)) {
@@ -25,41 +25,38 @@ export class RecipesService {
     return recipes;
   }
 
+  addToFav(title: string) {
+    if (this.favorites.includes(title)) {
+      alert('This recipe already in favorites!')
+    } else {
+      this.favorites.push(title);
+    }
+  }
+
   getRecipesArr() {
     return this.allRecipes;
   }
 
   getRecipeWithTitle(title: string) {
-    return this.allRecipes.find((recipe: any) => recipe.title === title);
+    return this.allRecipes.find((recipe: Recipe) => recipe.title === title);
   }
 
-  addNewRecipe(title: string, descr: string, url: string, instr: string) {
-    if (this.allRecipes.findIndex((recipe: any) => recipe.title === title) > -1) {
-      this.isRecipeExist = true;
-    } else {
-      this.allRecipes.push({
-        title: title,
-        description: descr,
-        photoUrl: url,
-        ingredients: [],
-        instructions: instr,
-        categoryId: 'string',
-        likes: 0
-      });
-      this.isRecipeExist = false;
-    }
+  addNewRecipe(newRecipe: Recipe) {
+    newRecipe.categoryId = '';
+    newRecipe.likes = 0;
+    this.allRecipes.push(newRecipe);
   }
 
-  editRecipe(curRecipeObj: any, title: string, descr: string, url: string, instr: string) {
-    curRecipeObj.title = title;
-    curRecipeObj.description = descr;
-    curRecipeObj.photoUrl = url;
-    curRecipeObj.instructions = instr;
+  editRecipe(curRecipeObj: Recipe, editedRecipe: Recipe) {
+    curRecipeObj.title = editedRecipe.title;
+    curRecipeObj.description = editedRecipe.description;
+    curRecipeObj.photoUrl = editedRecipe.photoUrl;
+    curRecipeObj.ingredients = editedRecipe.ingredients;
+    curRecipeObj.instructions = editedRecipe.instructions;
   }
 
   removeRecipe(title: string): void {
-    debugger
-    this.allRecipes.forEach((recipe: any, index: number) => {
+    this.allRecipes.forEach((recipe: Recipe, index: number) => {
       if (recipe.title === title) {
         this.allRecipes.splice(index, 1);
         return;
@@ -67,13 +64,3 @@ export class RecipesService {
     })
   }
 }
-
-// interface Recipe {
-//   title: string,
-//   description: string,
-//   photoUrl: string,
-//   ingredients: string[],
-//   instructions: string,
-//   categoryId: string,
-//   likes: number
-// }

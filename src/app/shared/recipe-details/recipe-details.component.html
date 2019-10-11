@@ -9,9 +9,9 @@
       </div>
     </div>
     <div class="btns">
-      <button>Edit</button>
-      <button>Add to Favorites</button>
-      <button>Purchases</button>
+      <button (click)='navToEdit("all-recipes/edit", curRecipeObj.title)'>Edit</button>
+      <button (click)='addNewFav()'>Add to Favorites</button>
+      <button (click)='addIngrsToPurchases()'>Purchases</button>
     </div>
   </div>
   <div class="ingredients">

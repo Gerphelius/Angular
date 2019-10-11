@@ -1,4 +1,6 @@
-export const allRecipes: Array<object> = [
+import { Recipe } from '../shared/interfaces/recipe-interface';
+
+export const allRecipes: Array<Recipe> = [
   {
     title: 'Sicilian Roasted Chicken',
     description: 'Chicken pieces seasoned with paprika, garlic powder, and oregano are roasted until juicy and tender in this simple Sicilian-inspired recipe.',

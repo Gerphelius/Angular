@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class IngredientsService {
   purchases: Array<string> = [];
 
-  getIngredientsArr() {
+  getIngredientsArr(): string[] {
     return this.purchases;
   }
 

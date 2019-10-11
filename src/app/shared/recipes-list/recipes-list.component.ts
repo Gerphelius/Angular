@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RecipesService } from 'src/app/core/recipes/recipes.service';
 import { ActivatedRoute } from '@angular/router';
+import { Recipe } from '../interfaces/recipe-interface';
 
 @Component({
   selector: 'app-recipes-list',
@@ -15,5 +16,5 @@ export class RecipesListComponent {
       this.recipes = this.recipesService.getFavRecipes();
     }
   }
-  recipes: Array<any>;
+  recipes: Array<Recipe>;
 }

@@ -8,6 +8,7 @@ import {
   faEye, 
   faPencilAlt
 } from '@fortawesome/free-solid-svg-icons';
+import { Recipe } from '../../interfaces/recipe-interface';
 
 @Component({
   selector: 'app-recipe-card',
@@ -24,7 +25,7 @@ export class RecipeCardComponent {
   faPencilAlt = faPencilAlt;
   faTrashAlt = faTrashAlt;
   
-  @Input() recipe: any;
+  @Input() recipe: Recipe;
   allRecipes = this.recipesService.allRecipes;
   removeRecipe = this.recipesService.removeRecipe;
 }

@@ -7,10 +7,11 @@ import { RecipeInputFormComponent } from './recipe-input-form/recipe-input-form.
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-import { ShadowDirective } from './recipes-list/recipe-card/directives/shadow.directive';
-import { StrLengthControlPipe } from './recipes-list/recipe-card/pipes/str-length-control.pipe';
+import { ShadowDirective } from './directives/shadow.directive';
+import { StrLengthControlPipe } from './pipes/str-length-control.pipe';
 import { RouterModule } from '@angular/router';
 import { RecipeDetailsComponent } from './recipe-details/recipe-details.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { RecipeDetailsComponent } from './recipe-details/recipe-details.componen
   imports: [
     CommonModule,
     FontAwesomeModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule
   ],
   exports: [
     RecipesListComponent,

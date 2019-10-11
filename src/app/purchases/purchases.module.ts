@@ -4,6 +4,7 @@ import { PurchasesComponent } from './purchases-component/purchases.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PurchasesListComponent } from './purchases-component/purchases-list/purchases-list.component';
 import { PurchasesRoutingModule } from './purchases-routing.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { PurchasesRoutingModule } from './purchases-routing.module';
   imports: [
     CommonModule,
     FontAwesomeModule,
-    PurchasesRoutingModule
+    PurchasesRoutingModule,
+    FormsModule,
   ],
   exports: [
     PurchasesComponent

@@ -1,7 +1,23 @@
-<div id="purchases-form">
-  <label for="ingredient-input">Ingredient</label>
-  <input #ingredient id='ingredient-input' type="text">
-  <button (click)='addIngredient(ingredient.value)'><fa-icon class="shopping-cart icon" [icon]="faShoppingCart"></fa-icon> Add to purchases</button>
-</div>
+
+<form class="purchases-form" #purchasesForm="ngForm" (ngSubmit)="addIngredient(purchasesForm.form.value.ingredient)">
+  <div class="input-wrapper">
+    <label for="ingredient">Ingredient</label>
+    <input 
+      id='ingredient' 
+      type="text"
+      name='ingredient'
+      ngModel
+      #ingredient="ngModel"
+      required
+    >
+    <span class="purchases-form__error" *ngIf="!ingredient.valid && ingredient.touched">
+      Ingredient name is required
+    </span>
+  </div>
+
+  <button type="submit" [disabled]="!purchasesForm.form.valid">
+    <fa-icon class="shopping-cart icon" [icon]="faShoppingCart"></fa-icon> Add to purchases
+  </button>
+</form>
 
 <app-purchases-list></app-purchases-list>

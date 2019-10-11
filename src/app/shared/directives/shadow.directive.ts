@@ -8,15 +8,14 @@ export class ShadowDirective {
   constructor(private elem: ElementRef) { }
 
   @HostListener('mouseenter') onMouseEnter() {
-    this.highlight('shadow');
+    this.highlight('0 0 2vw black');
   }
 
   @HostListener('mouseleave') onMouseLeave() {
-    this.highlight('shadow');
+    this.highlight(null);
   }
 
-  private highlight(className: string) {
-    this.elem.nativeElement.classList.toggle(className);
+  private highlight(params: string) {
+    this.elem.nativeElement.style.boxShadow = params;
   }
-
 }

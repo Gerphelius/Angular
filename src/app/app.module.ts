@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/header/header.component';
@@ -28,7 +29,9 @@ import { PurchasesRoutingModule } from './purchases/purchases-routing.module';
     AppRoutingModule,
     AllRecipesRoutingModule,
     FavoritesRoutingModule,
-    PurchasesRoutingModule
+    PurchasesRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     RecipesService,
