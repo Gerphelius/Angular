@@ -1,20 +1,30 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class IngredientsService {
-  purchases: Array<string> = [];
+  constructor(private http: HttpClient) {}
 
-  getIngredientsArr(): string[] {
-    return this.purchases;
+  purchasesSubject = new Subject();
+
+  getIngredientsArr(): Observable<{}> {
+    return this.http.get('http://localhost:3000/api/purchases');
   }
 
-  addToPurchases(ingredient: string) {
-    this.purchases.push(ingredient);
+  addToPurchases(ingredients: string[] | string) {
+    if (Array.isArray(ingredients)) {
+      ingredients.forEach((ingredient) => {
+        this.http.post('http://localhost:3000/api/purchases', {purchases: ingredient}).subscribe(() => this.purchasesSubject.next());
+      })
+    } else {
+      this.http.post('http://localhost:3000/api/purchases', {purchases: ingredients}).subscribe(() => this.purchasesSubject.next());
+    }
   }
 
-  removeFromPurchases(ingredient: string) {
-    this.purchases.splice(this.purchases.indexOf(ingredient), 1);
+  removeFromPurchases(id: string) {
+    this.http.delete(`http://localhost:3000/api/purchases/${id}`).subscribe(() => this.purchasesSubject.next());
   }
 }

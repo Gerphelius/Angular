@@ -12,7 +12,8 @@ export class PurchasesComponent {
   constructor(private readonly ingredientsService: IngredientsService, private route: ActivatedRoute) {}
   
   faShoppingCart = faShoppingCart;
-  
-  addIngredient = this.ingredientsService.addToPurchases; 
-  purchases: Array<string> = this.route.snapshot.data.ingredientsArr;
+
+  addIngredient(ingredient: string) {
+    this.ingredientsService.addToPurchases(ingredient);
+  }
 }

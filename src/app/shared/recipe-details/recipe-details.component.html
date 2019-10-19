@@ -5,11 +5,11 @@
       <div class="main-info-text">
         <h1 class="title"> {{ curRecipeObj.title }} </h1>
         <p class="description"> {{ curRecipeObj.description }} </p>
-        <p class="category">Category: {{ curRecipeObj.categoryId }} </p>
+        <p class="category">Category: {{ curRecipeObj.category }} </p>
       </div>
     </div>
     <div class="btns">
-      <button (click)='navToEdit("all-recipes/edit", curRecipeObj.title)'>Edit</button>
+      <button (click)='navToEdit("all-recipes/edit", curRecipeObj.id)'>Edit</button>
       <button (click)='addNewFav()'>Add to Favorites</button>
       <button (click)='addIngrsToPurchases()'>Purchases</button>
     </div>

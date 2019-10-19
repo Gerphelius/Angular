@@ -1,2 +1,2 @@
-<button routerLink="add-new-recipe" routerLinkActive='hide'>Add recipe</button>
+<button routerLink="add-new-recipe" *ngIf="router.url === '/all-recipes'">Add recipe</button>
 <router-outlet></router-outlet>

@@ -1,11 +1,11 @@
 
-<form class="purchases-form" #purchasesForm="ngForm" (ngSubmit)="addIngredient(purchasesForm.form.value.ingredient)">
+<form class="purchases-form" #purchasesForm="ngForm" (ngSubmit)="addIngredient(purchasesForm.form.value.purchases)">
   <div class="input-wrapper">
-    <label for="ingredient">Ingredient</label>
+    <label for="purchases">Ingredient</label>
     <input 
-      id='ingredient' 
+      id='purchases' 
       type="text"
-      name='ingredient'
+      name='purchases'
       ngModel
       #ingredient="ngModel"
       required

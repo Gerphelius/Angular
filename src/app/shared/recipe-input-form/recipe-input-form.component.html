@@ -41,14 +41,16 @@
 
   <div class="ingredients-input inputs">
     <div formArrayName="ingredients">
-      <label for='add-ingredients-btn'>Ingredients</label> 
-      <button id="add-ingredients-btn" type="button" (click)="addIngredients()">
-        <fa-icon class="trash icon" [icon]="faPlus"></fa-icon>
-      </button>
+      <div class="ingr-add">
+        <label for='add-ingredients-btn'>Ingredients</label> 
+        <button id="add-ingredients-btn" type="button" (click)="addIngredients()">
+          <fa-icon class="trash icon" [icon]="faPlus"></fa-icon>
+        </button>
+      </div>
   
       <div *ngFor="let ingredient of ingredients.controls; let i=index">
         <div [id]='i'>
-          <input type="text" [formControlName]="i">
+          <input class='ingredient-input' type="text" [formControlName]="i">
           <button type="button" (click)='deleteIngredient(ingredients, i)'>delete</button>
         </div>
       </div>
@@ -63,6 +65,14 @@
       formControlName="instructions"
     ></textarea>
     <span class="recipe-input-form__error-msg" *ngIf="!instructions.valid && instructions.touched"> Instructions is required! </span>
+  </div>
+
+  <div class="categories-input input">
+    <label>Category</label><br>
+    <select class="custom-select" formControlName="categoryId">
+      <option value="" disabled>Choose recipe category</option>
+      <option *ngFor="let category of categories">{{ category.name }}</option>
+   </select>
   </div>
 
   <button type="submit" [disabled]="!recipeInputForm.valid"> {{ btnName }} </button>

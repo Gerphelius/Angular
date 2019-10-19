@@ -5,15 +5,15 @@ import { RecipeInputFormComponent } from '../shared/recipe-input-form/recipe-inp
 import { RecipesListComponent } from '../shared/recipes-list/recipes-list.component';
 import { RecipeDetailsComponent } from '../shared/recipe-details/recipe-details.component';
 import { RecipesResolverService } from '../core/resolvers/recipes-resolver.service';
-import { TitleResolverService } from '../core/resolvers/title-resolver.service';
+import { IdResolverService } from '../core/resolvers/id-resolver.service';
 
 const allRecipesRoutes: Routes = [
   { path: '', redirectTo: 'all-recipes', pathMatch: 'full' },
   { path: 'all-recipes', component: AllRecipesComponent, resolve: { allRecipesArr: RecipesResolverService }, children: [
       { path: '', component: RecipesListComponent, data: { isAllRecipes: true } },
       { path: 'add-new-recipe', component: RecipeInputFormComponent, data: { btnName: 'Add recipe' } },
-      { path: 'edit/:title', component: RecipeInputFormComponent, resolve: { title: TitleResolverService }, data: { btnName: 'Edit recipe' } },
-      { path: 'recipe/:title', component: RecipeDetailsComponent, resolve: { title: TitleResolverService } },
+      { path: 'edit/:id', component: RecipeInputFormComponent, resolve: { id: IdResolverService }, data: { btnName: 'Edit recipe' } },
+      { path: 'recipe/:id', component: RecipeDetailsComponent, resolve: { id: IdResolverService } },
     ] 
   },
 ];
@@ -26,4 +26,4 @@ const allRecipesRoutes: Routes = [
     RouterModule
   ]
 })
-export class AllRecipesRoutingModule { }
+export class AllRecipesRoutingModule {}

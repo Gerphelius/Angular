@@ -9,6 +9,7 @@ import {
 } from '@angular/forms';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { Recipe } from '../interfaces/recipe-interface';
+import { Categories } from '../interfaces/categories';
 
 @Component({
   selector: 'app-recipe-input-form',
@@ -25,16 +26,19 @@ export class RecipeInputFormComponent implements OnInit {
   
   faPlus = faPlus;
 
-  recipe: Recipe = this.route.snapshot.data.title;
+  recipe: Recipe = this.route.snapshot.data.id;
   btnName: string = this.route.snapshot.data.btnName;
   recipeInputForm: any;
   isRecipeExist: boolean = false;
-  url = new RegExp('^(https?:\\/\\/)?' +
-  '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' +
+  url = new RegExp(
+    '^(https?:\\/\\/)?' +
+    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' +
     '((\\d{1,3}\\.){3}\\d{1,3}))' +
     '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' +
     '(\\?[;&a-z\\d%_.~+=-]*)?' +
-    '(\\#[-a-z\\d_]*)?$', 'i');
+    '(\\#[-a-z\\d_]*)?$', 'i'
+  );
+  categories: Categories[] = this.recipesService.categories;
  
   ngOnInit() {
     this.recipeInputForm = this.formBuilder.group({
@@ -50,18 +54,15 @@ export class RecipeInputFormComponent implements OnInit {
       ]),
       ingredients: this.formBuilder.array(this.recipe ? this.recipe.ingredients : []),
       instructions: new FormControl(this.recipe ? this.recipe.instructions : '', Validators.required),
+      categoryId: [this.categories[0].name]
     });
   }
  
   submit(inputsObj: Recipe) {
   	if (this.btnName === 'Add recipe') {
-      if (this.recipesService.getRecipeWithTitle(inputsObj.title)) {
-        this.isRecipeExist = true;
-      } else {
-        this.recipesService.addNewRecipe(inputsObj);
-      }
+      this.recipesService.recipesSubject.next(this.recipesService.addNewRecipe(inputsObj));
     } else if (this.btnName === 'Edit recipe') {
-      this.recipesService.editRecipe(this.recipe, inputsObj)
+      this.recipesService.recipesSubject.next(this.recipesService.editRecipe(inputsObj, this.recipe.id));
     }
     this.router.navigate(['..'])
   }

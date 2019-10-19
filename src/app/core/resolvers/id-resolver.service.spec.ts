@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { TitleResolverService } from './title-resolver.service';
+import { IdResolverService } from './id-resolver.service';
 
-describe('TitleResolverService', () => {
+describe('IdResolverServic', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: TitleResolverService = TestBed.get(TitleResolverService);
+    const service: IdResolverService = TestBed.get(IdResolverService);
     expect(service).toBeTruthy();
   });
 });

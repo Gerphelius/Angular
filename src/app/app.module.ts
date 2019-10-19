@@ -15,6 +15,7 @@ import { IngredientsService } from './core/ingredients/ingredients.service';
 import { AllRecipesRoutingModule } from './all-recipes/all-recipes-routing.module';
 import { FavoritesRoutingModule } from './favorites/favorites-routing.module';
 import { PurchasesRoutingModule } from './purchases/purchases-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { PurchasesRoutingModule } from './purchases/purchases-routing.module';
     FavoritesRoutingModule,
     PurchasesRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [
     RecipesService,

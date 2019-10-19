@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IngredientsService } from 'src/app/core/ingredients/ingredients.service';
 import { RecipesService } from 'src/app/core/recipes/recipes.service';
+import { FullRecipe } from '../interfaces/full-recipe';
 
 @Component({
   selector: 'app-recipe-details',
@@ -17,18 +18,19 @@ export class RecipeDetailsComponent {
     private recipesService: RecipesService
   ) { }
 
-  curRecipeObj: any = this.route.snapshot.data.title;
+  curRecipeObj: FullRecipe = this.route.snapshot.data.id;
 
-  navToEdit(url: string, title: string) {
-    this.router.navigate([url, title]);
+  navToEdit(url: string, id: string) {
+    this.router.navigate([url, id]);
   }
 
   addIngrsToPurchases() {
-    this.ingredientsService.purchases = this.curRecipeObj.ingredients;
+    this.ingredientsService.addToPurchases(this.curRecipeObj.ingredients);
     this.router.navigate(['purchases']);
   }
 
   addNewFav() {
-    this.recipesService.addToFav(this.curRecipeObj.title)
+    this.recipesService.addToFav(this.curRecipeObj.id);
+    this.router.navigate(['favorites']);
   }
 }

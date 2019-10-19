@@ -9,6 +9,7 @@ import {
   faPencilAlt
 } from '@fortawesome/free-solid-svg-icons';
 import { Recipe } from '../../interfaces/recipe-interface';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-recipe-card',
@@ -16,7 +17,11 @@ import { Recipe } from '../../interfaces/recipe-interface';
   styleUrls: ['./recipe-card.component.scss']
 })
 export class RecipeCardComponent {
-  constructor(private readonly recipesService: RecipesService) {}
+  constructor(
+    private readonly recipesService: RecipesService, 
+    private route: ActivatedRoute, 
+    private router: Router
+  ) {}
   
   faThumbsUp = faThumbsUp;
   faThumbsDown = faThumbsDown;
@@ -26,6 +31,19 @@ export class RecipeCardComponent {
   faTrashAlt = faTrashAlt;
   
   @Input() recipe: Recipe;
-  allRecipes = this.recipesService.allRecipes;
-  removeRecipe = this.recipesService.removeRecipe;
+
+  removeRecipe(id: string) {
+    this.recipesService.removeFromFav(id);  
+    if (this.router.url === '/all-recipes') {
+      this.recipesService.removeRecipe(id); 
+    } 
+  }
+
+  addLike(recipe: Recipe) {
+    this.recipesService.addLike(recipe);
+  }
+
+  addDislike(recipe: Recipe) {
+    this.recipesService.addDislike(recipe);
+  }
 }

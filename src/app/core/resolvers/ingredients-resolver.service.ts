@@ -2,17 +2,16 @@ import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/r
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IngredientsService } from '../ingredients/ingredients.service';
-import { Recipe } from 'src/app/shared/interfaces/recipe-interface';
 
 @Injectable({providedIn: 'root'})
-export class IngredientsResolverService implements Resolve<Array<string>> {
+export class IngredientsResolverService implements Resolve<{}> {
   constructor(
     private ingredientsService: IngredientsService
   ) {
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):
-    Observable<Array<string>> | Promise<Array<string>> | Array<string> {
+    Observable<{}> | Promise<{}> | {} {
     return this.ingredientsService.getIngredientsArr();
   }
 }

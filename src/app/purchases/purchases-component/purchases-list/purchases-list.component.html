@@ -1,3 +1,3 @@
 <ul class="purchases-list" *ngFor='let purchase of purchases'>
-  <li #purchaseItem class="purchase-item">{{ purchase }} <fa-icon (click)='removeFromPurchases(purchaseItem.innerText.trim())' [icon]="faTimes"></fa-icon></li>
+  <li #purchaseItem class="purchase-item">{{ purchase.purchase }} <fa-icon (click)='removeFromPurchases(purchaseItem.innerText.trim())' [icon]="faTimes"></fa-icon></li>
 </ul>
