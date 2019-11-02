@@ -1,0 +1,79 @@
+<form class="recipe-input-form" [formGroup]="recipeInputForm" (ngSubmit)="submit(recipeInputForm.value)">
+  <div class="title-input inputs">
+    <label for='title'>Title</label>
+    <input 
+      type="text" 
+      id="title" 
+      formControlName="title"
+    >
+    <div *ngIf="title.invalid && title.touched">
+      <span class="recipe-input-form__error-msg" *ngIf="title.errors.required">
+        Title is required!
+      </span>
+      <span class="recipe-input-form__error-msg" *ngIf="title.errors.maxlength">
+        Title should be less than 50 symbols!
+      </span>
+    </div>
+    <span class="recipe-input-form__error-msg" *ngIf="isRecipeExist">
+      This recipe already exists!
+    </span>
+  </div>
+
+  <div class="description-input inputs">
+    <label for="description">Description</label>
+    <textarea 
+      id="description" 
+      rows="10"
+      formControlName="description"
+    ></textarea>
+    <span class="recipe-input-form__error-msg" *ngIf="!description.valid && description.touched"> Description is required! </span>
+  </div>
+
+  <div class="url-input inputs">
+    <label for="photoUrl">Photo URL</label>
+    <input 
+      type="url" 
+      id="photoUrl"
+      formControlName="photoUrl"
+    >
+    <span class="recipe-input-form__error-msg" *ngIf="!photoUrl.valid && photoUrl.touched"> Url is required! </span>
+  </div>
+
+  <div class="ingredients-input inputs">
+    <div formArrayName="ingredients">
+      <div class="ingr-add">
+        <label for='add-ingredients-btn'>Ingredients</label> 
+        <button id="add-ingredients-btn" type="button" (click)="addIngredients()">
+          <fa-icon class="trash icon" [icon]="faPlus"></fa-icon>
+        </button>
+      </div>
+  
+      <div *ngFor="let ingredient of ingredients.controls; let i=index">
+        <div [id]='i'>
+          <input class='ingredient-input' type="text" [formControlName]="i">
+          <button type="button" (click)='deleteIngredient(ingredients, i)'>delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="instructions-input inputs">
+    <label for="instructions"> Instructions </label>
+    <textarea 
+      id="instructions" 
+      rows="10"
+      formControlName="instructions"
+    ></textarea>
+    <span class="recipe-input-form__error-msg" *ngIf="!instructions.valid && instructions.touched"> Instructions is required! </span>
+  </div>
+
+  <div class="categories-input input">
+    <label>Category</label><br>
+    <select class="custom-select" formControlName="categoryId">
+      <option value="" disabled>Choose recipe category</option>
+      <option *ngFor="let category of categories">{{ category.name }}</option>
+   </select>
+  </div>
+
+  <button type="submit" [disabled]="!recipeInputForm.valid"> {{ btnName }} </button>
+</form>

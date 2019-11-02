@@ -1,0 +1,40 @@
+.purchases-form {
+  display: grid;
+  grid-template-areas: 
+  "input none"
+  "input button";
+  padding: 10vw 2vw 2vw 2vw;
+  grid-column-gap: 1vw;
+  align-content: flex-end;
+
+  .input-wrapper {
+    display: grid;
+    grid-auto-flow: row;
+    grid-area: input;
+  }
+
+  label {
+    font-weight: 500;
+    font-size: 2rem;
+  }
+
+  input {
+    font-size: 2rem;
+  }
+
+  button {
+    grid-area: button;
+    width: 13vw;
+    padding: 0 1vw;
+    height: 2.3vw;
+    background-color: rgb(23, 122, 94);
+    border: none;
+    border-radius: 0.3vw;
+    color: white;
+    font-size: 1.2rem;
+  }
+
+  button:hover {
+    background-color: rgb(53, 163, 132);
+  }
+}

@@ -1,0 +1,7 @@
+ul {
+  margin: 0;
+  padding: 6vw 2vw;
+  display: grid;
+  grid-template-columns: repeat(4, 22vw);
+  grid-gap: 1.5vw;
+}

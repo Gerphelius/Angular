@@ -1,0 +1,38 @@
+header {
+  display: grid;
+  grid-template-columns: 5vw 50vw auto;
+  background-color: rgb(175, 175, 175);
+  padding: 0 2vw;
+  color: #4a4a4a;
+  position: fixed;
+  width: 96%;
+  height: 5vw;
+  align-items: center;
+}
+
+img {
+  height: 4vw;
+}
+
+.logo:hover {
+  cursor: pointer;
+}
+
+.main-nav {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: end;
+  grid-gap: 1vw;
+
+  .nav-item {
+    text-decoration: none;
+    color: #4a4a4a;
+    font-weight: bold;
+    height: 2.2vw;
+    margin-top: 1vw;
+  }
+
+  .active {
+    border-bottom: 0.15vw solid rgb(213, 20, 85);
+  }
+}

@@ -1,0 +1,27 @@
+<div class="recipe-details-wrapper">
+  <div class="main-info-wrapper">
+    <div class="recipe-main-info">
+      <img class="recipe-image" [src]="curRecipeObj.photoUrl" alt="recipe image">
+      <div class="main-info-text">
+        <h1 class="title"> {{ curRecipeObj.title }} </h1>
+        <p class="description"> {{ curRecipeObj.description }} </p>
+        <p class="category">Category: {{ curRecipeObj.category }} </p>
+      </div>
+    </div>
+    <div class="btns">
+      <button (click)='navToEdit("all-recipes/edit", curRecipeObj.id)'>Edit</button>
+      <button (click)='addNewFav()'>Add to Favorites</button>
+      <button (click)='addIngrsToPurchases()'>Purchases</button>
+    </div>
+  </div>
+  <div class="ingredients">
+    <h1>Ingredients</h1>
+    <ul *ngFor='let ingredient of curRecipeObj.ingredients'>
+      <li> {{ ingredient }} </li>
+    </ul>
+  </div>
+  <div class="instructions">
+    <h1>Instructions</h1>
+    <p> {{ curRecipeObj.instructions }} </p>
+  </div>
+</div>
